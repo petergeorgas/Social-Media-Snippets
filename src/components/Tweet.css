@@ -1,0 +1,38 @@
+.tweet-box {
+  border-radius: 25px;
+  background-color: white;
+  width: 800px;
+  max-height: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15), 0 6px 6px rgba(0, 0, 0, 0.2);
+}
+.pfp {
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  margin-right: 15px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-name-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: x-large;
+}
+
+.tweet-body {
+  font-size: xx-large;
+}
+
+.timestamp {
+  color: #777674;
+  font-size: x-large;
+}
