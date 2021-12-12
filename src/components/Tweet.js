@@ -26,6 +26,17 @@ function Tweet() {
         <div className="timestamp">
           <p>10:41 PM • 9 Dec, 2021</p>
         </div>
+        <div className="interactions-container">
+          <p className="tweet-interaction-box">
+            <span className="tweet-interaction">1,551</span> replies
+          </p>
+          <p className="tweet-interaction-box">
+            <span className="tweet-interaction">10.1K</span> retweets
+          </p>
+          <p className="tweet-interaction-box">
+            <span className="tweet-interaction">4,892</span> likes
+          </p>
+        </div>
       </div>
     </div>
   );
