@@ -1,5 +1,7 @@
 import React from "react";
 import "./Tweet.css";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function Tweet() {
   return (
     <div>
@@ -15,6 +17,7 @@ function Tweet() {
               @peter_georgas
             </p>
           </div>
+          <FontAwesomeIcon id="twitter-logo" icon={faTwitter} size="3x" />
         </div>
         <div className="tweet-body">
           <p style={{ marginBottom: 0 }}>
