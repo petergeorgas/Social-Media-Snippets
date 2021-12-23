@@ -1,9 +1,11 @@
 import "./App.css";
+import SnipLinkBox from "./components/SnipLinkBox";
 import Tweet from "./components/Tweet";
 function App() {
   return (
     <div className="App">
-      <Tweet></Tweet>
+      <SnipLinkBox/>
+      <Tweet/>
     </div>
   );
 }
