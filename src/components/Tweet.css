@@ -13,13 +13,23 @@
   margin-left: auto;
 }
 
+#verify-badge {
+  margin-left: 5px;
+  width: 25px;
+  height: 25px;
+}
+
 .interactions-container {
   display: flex;
   flex-direction: row;
   font-size: x-large;
   color: #777674;
 }
-
+.profile-name-verify {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 .tweet-interaction {
   font-weight: bold;
   color: black;
