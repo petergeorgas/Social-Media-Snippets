@@ -4,8 +4,8 @@ import Tweet from "./components/Tweet";
 function App() {
   return (
     <div className="App">
-      <SnipLinkBox/>
-      <Tweet/>
+      <SnipLinkBox />
+      <Tweet />
     </div>
   );
 }
