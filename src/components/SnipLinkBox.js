@@ -1,12 +1,25 @@
 import React, { useState } from "react";
 import "./SnipLinkBox.css";
 
+const tweet_status_regex = new RegExp(
+  /^https?:\/\/twitter\.com\/(\w+)\/status\/(\d+)$/
+);
+
 function SnipLinkBox() {
-  const [link, setLink] = useState(null); // Used to persist the Tweet link.
+  const [link, setLink] = useState(undefined); // Used to persist the Tweet link.
 
   const onSnip = (event) => {
+    // Here, we are going to need to verify that the link is to a tweet.
     event.preventDefault();
-    console.log("Snip!");
+
+    if (tweet_status_regex.test(link)) {
+      console.log("Twitter status link has been entered!");
+      const id = link.split("/").at(-1);
+      console.log(`ID:${id}`);
+    } else {
+      console.log("Not a Tweet status link.");
+      // Display invalid link
+    }
   };
 
   return (
@@ -18,6 +31,7 @@ function SnipLinkBox() {
             className="link-box"
             placeholder="Paste a link to a tweet here"
             onChange={(event) => setLink(event.target.value)}
+            value={link}
           />
           <button type="submit" className="submit-button">
             Snip
