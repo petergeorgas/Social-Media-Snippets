@@ -21,12 +21,20 @@
   cursor: pointer;
 }
 
+.submit-button:hover{
+    background-color: #1d96e2;
+}
+
 .link-box {
   font-size: x-large;
   width: 85%;
   height: 50px;
   border-radius: 10px;
   border: 3px solid #ccc;
+}
+
+.link-box:focus {
+  outline: 3px solid #1da1f2;
 }
 
 #snip-bar {
