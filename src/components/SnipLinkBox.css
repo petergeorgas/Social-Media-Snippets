@@ -21,8 +21,8 @@
   cursor: pointer;
 }
 
-.submit-button:hover{
-    background-color: #1d96e2;
+.submit-button:hover {
+  background-color: #1d96e2;
 }
 
 .link-box {
@@ -37,7 +37,19 @@
   outline: 3px solid #1da1f2;
 }
 
+.link-box-invalid {
+  outline: 3px solid #f82a27;
+}
+
 #snip-bar {
   display: flex;
   flex-direction: row;
+}
+
+#invalid-link-label {
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-size: large;
+  color: #f82a27;
+  font-weight: 400;
 }
