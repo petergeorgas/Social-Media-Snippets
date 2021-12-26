@@ -1,24 +1,28 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import SnipLinkBox from "./components/SnipLinkBox";
 import Tweet from "./components/Tweet";
 function App() {
-  const [tweet, setTweet] = useState({});
 
-  useEffect(() => {
-    fetch("https://api.twitter.com/2/tweets?ids=1359729466721898498");
+  const [snippet, setSnippet] = useState({
+    name: null,
+    handle: null,
+    pfp_link: null,
+    tweet_body: null,
+    replies: null,
+    retweets: null,
+    likes: null,
   });
+
+  const setTweetComponentProps = (obj) => {
+    console.log("WARNING!!! LOGGER!");
+    setSnippet(obj);
+  };
 
   return (
     <div className="App">
-      <Tweet
-        name="Peter Georgas"
-        handle="@peter_georgas"
-        pfp_link="https://pbs.twimg.com/profile_images/1399483683317428226/BkPY6kfN_400x400.jpg"
-        tweet_body="Hello! I am a nice Tweet!"
-        replies="45"
-        retweets="10.1K"
-        likes="15.8K"
-      ></Tweet>
+      <SnipLinkBox setTweetComponentProps={setTweetComponentProps} />
+      {snippet.name ? <Tweet /> : null}
     </div>
   );
 }
