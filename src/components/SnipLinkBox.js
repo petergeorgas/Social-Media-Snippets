@@ -8,7 +8,7 @@ const tweet_status_regex = new RegExp(
 const twitter_api_endpoint =
   "https://social-media-snippets-functions.vercel.app/api/twitter";
 
-function SnipLinkBox() {
+function SnipLinkBox({ setTweetComponentProps }) {
   const [link, setLink] = useState(undefined); // Used to persist the Tweet link.
   const [invalidLink, setInvalidLink] = useState(false);
 
@@ -24,6 +24,7 @@ function SnipLinkBox() {
       const [link, account_name, status_id] = split_link;
       const req = {
         method: "POST",
+        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
@@ -32,9 +33,22 @@ function SnipLinkBox() {
         },
       };
 
-      fetch(twitter_api_endpoint, req).then((res) => {
-        console.log(res.json());
-      });
+      fetch(twitter_api_endpoint, req)
+        .then((res) => {
+          //console.log(res.json());
+          setTweetComponentProps({
+            name: "Peter Georgas",
+            handle: "@peter_georgas",
+            pfp_link: "http://google.com/img/1892-4184.jpg",
+            tweet_body: null,
+            replies: null,
+            retweets: null,
+            likes: null,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       console.log("Not a Tweet status link.");
       // Display invalid link
