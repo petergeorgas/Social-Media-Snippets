@@ -8,6 +8,7 @@ function App() {
     handle: null,
     pfp_link: null,
     tweet_body: null,
+    timestamp: null,
     replies: null,
     retweets: null,
     likes: null,
@@ -26,6 +27,7 @@ function App() {
           handle={snippet.handle}
           pfp_link={snippet.pfp_link}
           tweet_body={snippet.tweet_body}
+          timestamp={snippet.timestamp}
           replies={snippet.replies}
           retweets={snippet.retweets}
           likes={snippet.likes}
