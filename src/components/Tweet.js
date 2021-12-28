@@ -42,13 +42,16 @@ function Tweet(props) {
         </div>
         <div className="interactions-container">
           <p className="tweet-interaction-box">
-            <span className="tweet-interaction">{replies}</span> replies
+            <span className="tweet-interaction">{replies}</span>
+            {replies === "1" ? " reply" : " replies"}
           </p>
           <p className="tweet-interaction-box">
-            <span className="tweet-interaction">{retweets}</span> retweets
+            <span className="tweet-interaction">{retweets}</span> retweet
+            {retweets === "1" ? "" : "s"}
           </p>
           <p className="tweet-interaction-box">
-            <span className="tweet-interaction">{likes}</span> likes
+            <span className="tweet-interaction">{likes}</span> like
+            {retweets === "1" ? "" : "s"}
           </p>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SnipLinkBox.css";
-import { getFullSizePfpLink } from "../utils/tweet_utils";
+import { getFullSizePfpLink, prettifyTweetMetric } from "../utils/tweet_utils";
 
 const tweet_status_regex = new RegExp(
   /^https?:\/\/twitter\.com\/(\w+)\/status\/(\d+)$/
@@ -35,9 +35,6 @@ function SnipLinkBox({ setTweetComponentProps }) {
 
       fetch(twitter_api_endpoint, req)
         .then((resp) => {
-          //console.log(res.json());
-
-          //console.log(resp.json());
           // Resolve the JSON promise
           resp
             .json()
@@ -58,9 +55,13 @@ function SnipLinkBox({ setTweetComponentProps }) {
                   includedUserData.profile_image_url
                 ),
                 tweet_body: tweetData.text,
-                replies: tweetData.public_metrics.reply_count,
-                retweets: tweetData.public_metrics.retweet_count,
-                likes: tweetData.public_metrics.like_count,
+                replies: prettifyTweetMetric(
+                  tweetData.public_metrics.reply_count
+                ),
+                retweets: prettifyTweetMetric(
+                  tweetData.public_metrics.retweet_count
+                ),
+                likes: prettifyTweetMetric(tweetData.public_metrics.like_count),
               });
             })
             .catch((err) => {
