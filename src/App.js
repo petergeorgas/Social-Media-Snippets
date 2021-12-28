@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useEffect, useState } from "react";
+import "./App.css";
+import SnipLinkBox from "./components/SnipLinkBox";
+import Tweet from "./components/Tweet";
 function App() {
+  const [snippet, setSnippet] = useState({
+    name: null,
+    handle: null,
+    pfp_link: null,
+    tweet_body: null,
+    timestamp: null,
+    replies: null,
+    retweets: null,
+    likes: null,
+  });
+
+  const setTweetComponentProps = (obj) => {
+    setSnippet(obj);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SnipLinkBox setTweetComponentProps={setTweetComponentProps} />
+      {snippet.name ? (
+        <Tweet
+          name={snippet.name}
+          handle={snippet.handle}
+          pfp_link={snippet.pfp_link}
+          tweet_body={snippet.tweet_body}
+          timestamp={snippet.timestamp}
+          replies={snippet.replies}
+          retweets={snippet.retweets}
+          likes={snippet.likes}
+        />
+      ) : null}
     </div>
   );
 }
