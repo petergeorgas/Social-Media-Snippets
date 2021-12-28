@@ -22,7 +22,7 @@ function SnipLinkBox({ setTweetComponentProps }) {
     if (split_link && split_link.length > 0) {
       console.log("Twitter status link has been entered!");
       if (invalidLink) setInvalidLink(false); // If invalid link was set to true, reset it.
-      const [link, account_name, status_id] = split_link;
+      const [status_id] = split_link;
       const req = {
         method: "POST",
         headers: {

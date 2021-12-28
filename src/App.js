@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import SnipLinkBox from "./components/SnipLinkBox";
 import Tweet from "./components/Tweet";

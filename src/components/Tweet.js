@@ -20,12 +20,13 @@ function Tweet(props) {
     <div>
       <div className="tweet-box">
         <div className="profile-info">
-          <img src={pfp_link} className="pfp" />
+          <img src={pfp_link} className="pfp" alt="Author profile." />
           <div className="profile-name-container">
             <div className="profile-name-verify">
               <h3 style={{ marginTop: 0, marginBottom: "5px" }}>{name}</h3>
               <img
                 id="verify-badge"
+                alt="Twitter verified badge."
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/640px-Twitter_Verified_Badge.svg.png"
               />
             </div>
