@@ -2,6 +2,7 @@ import React from "react";
 import "./Tweet.css";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import dateFormat from "dateformat";
 import PropTypes from "prop-types";
 function Tweet(props) {
   const {
@@ -38,17 +39,20 @@ function Tweet(props) {
           <p style={{ marginBottom: 0 }}>{tweet_body}</p>
         </div>
         <div className="timestamp">
-          <p>10:41 PM • 9 Dec, 2021</p>
+          <p>{dateFormat(timestamp, "h:MM TT • d mmm, yyyy")}</p>
         </div>
         <div className="interactions-container">
           <p className="tweet-interaction-box">
-            <span className="tweet-interaction">{replies}</span> replies
+            <span className="tweet-interaction">{replies}</span>
+            {replies === "1" ? " reply" : " replies"}
           </p>
           <p className="tweet-interaction-box">
-            <span className="tweet-interaction">{retweets}</span> retweets
+            <span className="tweet-interaction">{retweets}</span> retweet
+            {retweets === "1" ? "" : "s"}
           </p>
           <p className="tweet-interaction-box">
-            <span className="tweet-interaction">{likes}</span> likes
+            <span className="tweet-interaction">{likes}</span> like
+            {retweets === "1" ? "" : "s"}
           </p>
         </div>
       </div>
