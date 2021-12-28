@@ -52,6 +52,7 @@ function SnipLinkBox({ setTweetComponentProps }) {
               setTweetComponentProps({
                 name: includedUserData.name,
                 handle: `@${includedUserData.username}`,
+                verified: includedUserData.verified,
                 pfp_link: getFullSizePfpLink(
                   includedUserData.profile_image_url
                 ),

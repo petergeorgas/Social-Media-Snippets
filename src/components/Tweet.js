@@ -8,6 +8,7 @@ function Tweet(props) {
   const {
     name,
     handle,
+    verified,
     pfp_link,
     tweet_body,
     timestamp,
@@ -19,16 +20,19 @@ function Tweet(props) {
   return (
     <div>
       <div className="tweet-box">
+        <div className="line-break"></div>
         <div className="profile-info">
           <img src={pfp_link} className="pfp" alt="Author profile." />
           <div className="profile-name-container">
             <div className="profile-name-verify">
               <h3 style={{ marginTop: 0, marginBottom: "5px" }}>{name}</h3>
-              <img
-                id="verify-badge"
-                alt="Twitter verified badge."
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/640px-Twitter_Verified_Badge.svg.png"
-              />
+              {verified ? (
+                <img
+                  id="verify-badge"
+                  alt="Twitter verified badge."
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/640px-Twitter_Verified_Badge.svg.png"
+                />
+              ) : null}
             </div>
             <p style={{ marginTop: 0, marginBottom: 0, color: "#777674" }}>
               {handle}
@@ -64,10 +68,15 @@ function Tweet(props) {
 Tweet.propTypes = {
   name: PropTypes.string.isRequired,
   handle: PropTypes.string.isRequired,
+  verified: PropTypes.bool,
   tweet_body: PropTypes.string.isRequired,
   replies: PropTypes.string.isRequired,
   retweets: PropTypes.string.isRequired,
   likes: PropTypes.string.isRequired,
+};
+
+Tweet.defaultProps = {
+  verified: false,
 };
 
 export default Tweet;
