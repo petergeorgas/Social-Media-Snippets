@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./SnipLinkBox.css";
+import { getFullSizePfpLink } from "../utils/tweet_utils";
 
 const tweet_status_regex = new RegExp(
   /^https?:\/\/twitter\.com\/(\w+)\/status\/(\d+)$/
@@ -24,27 +25,49 @@ function SnipLinkBox({ setTweetComponentProps }) {
       const [link, account_name, status_id] = split_link;
       const req = {
         method: "POST",
-        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
-        body: {
+        body: JSON.stringify({
           status_id: status_id,
-        },
+        }),
       };
 
       fetch(twitter_api_endpoint, req)
-        .then((res) => {
+        .then((resp) => {
           //console.log(res.json());
-          setTweetComponentProps({
-            name: "Peter Georgas",
-            handle: "@peter_georgas",
-            pfp_link: "http://google.com/img/1892-4184.jpg",
-            tweet_body: null,
-            replies: null,
-            retweets: null,
-            likes: null,
-          });
+
+          //console.log(resp.json());
+          // Resolve the JSON promise
+          resp
+            .json()
+            .then((data) => {
+              console.log(data);
+              let tweetData = data.data[0];
+              let includedUserData = data.includes.users[0];
+              console.log(
+                `TweetData: ${JSON.stringify(
+                  tweetData
+                )}\nIncludes: ${JSON.stringify(includedUserData)}.`
+              );
+
+              setTweetComponentProps({
+                name: includedUserData.name,
+                handle: `@${includedUserData.username}`,
+                pfp_link: getFullSizePfpLink(
+                  includedUserData.profile_image_url
+                ),
+                tweet_body: tweetData.text,
+                replies: tweetData.public_metrics.reply_count,
+                retweets: tweetData.public_metrics.retweet_count,
+                likes: tweetData.public_metrics.like_count,
+              });
+            })
+            .catch((err) => {
+              console.log(
+                `There was an error resolving the JSON returned by the API.\n${err}`
+              );
+            });
         })
         .catch((err) => {
           console.log(err);
