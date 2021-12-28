@@ -47,18 +47,24 @@ function Tweet(props) {
           <p>{dateFormat(timestamp, "h:MM TT • d mmm, yyyy")}</p>
         </div>
         <div className="interactions-container">
-          <p className="tweet-interaction-box">
-            <span className="tweet-interaction">{replies}</span>
-            {replies === "1" ? " reply" : " replies"}
-          </p>
-          <p className="tweet-interaction-box">
-            <span className="tweet-interaction">{retweets}</span> retweet
-            {retweets === "1" ? "" : "s"}
-          </p>
-          <p className="tweet-interaction-box">
-            <span className="tweet-interaction">{likes}</span> like
-            {retweets === "1" ? "" : "s"}
-          </p>
+          {replies !== "0" ? (
+            <p className="tweet-interaction-box">
+              <span className="tweet-interaction">{replies}</span>
+              {replies === "1" ? " reply" : " replies"}
+            </p>
+          ) : null}
+          {retweets !== "0" ? (
+            <p className="tweet-interaction-box">
+              <span className="tweet-interaction">{retweets}</span> retweet
+              {retweets === "1" ? "" : "s"}
+            </p>
+          ) : null}
+          {likes !== "0" ? (
+            <p className="tweet-interaction-box">
+              <span className="tweet-interaction">{likes}</span> like
+              {retweets === "1" ? "" : "s"}
+            </p>
+          ) : null}
         </div>
       </div>
     </div>
