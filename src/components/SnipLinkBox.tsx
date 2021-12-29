@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from "react";
 import "./SnipLinkBox.css";
 import { getFullSizePfpLink, prettifyTweetMetric } from "../utils/tweet_utils";
-import { ISnippet } from "../utils/types/types";
+import { ISnippet, TweetData, TweetIncludes } from "../utils/types/types";
 
 const tweet_status_regex: RegExp = new RegExp(
   /^https?:\/\/twitter\.com\/(\w+)\/status\/(\d+)$/
@@ -20,6 +20,7 @@ const SnipLinkBox = (props: SnapLinkBoxProps): JSX.Element => {
   const [link, setLink] = useState<string>(""); // Used to persist the Tweet link.
 
   const [invalidLink, setInvalidLink] = useState<boolean>(false);
+
   const {setTweetComponentProps} = props
 
   const onSnip = (event: FormEvent): void => {
@@ -27,11 +28,12 @@ const SnipLinkBox = (props: SnapLinkBoxProps): JSX.Element => {
     event.preventDefault();
 
     
-    const split_link = tweet_status_regex.exec(link);
+    const split_link: RegExpExecArray | null = tweet_status_regex.exec(link);
     // Match RegEx to make sure a Tweet link was input -- so we can properly generate a snippet.
     if (split_link && split_link.length > 0) {
       console.log("Twitter status link has been entered!");
       if (invalidLink) setInvalidLink(false); // If invalid link was set to true, reset it.
+      
       const [link, account_name, status_id] = split_link;
       console.log(`Link: ${link}\nAccount: ${account_name}\nID:${status_id}`);
       const req = {
@@ -45,14 +47,14 @@ const SnipLinkBox = (props: SnapLinkBoxProps): JSX.Element => {
       };
 
       fetch(twitter_api_endpoint, req)
-        .then((resp) => {
+        .then((resp: Response) => {
           // Resolve the JSON promise
           resp
             .json()
             .then((data) => {
               console.log(data);
-              let tweetData = data.data[0];
-              let includedUserData = data.includes.users[0];
+              let tweetData: TweetData = data.data[0];
+              let includedUserData: TweetIncludes = data.includes.users[0];
               console.log(
                 `TweetData: ${JSON.stringify(
                   tweetData
@@ -88,7 +90,7 @@ const SnipLinkBox = (props: SnapLinkBoxProps): JSX.Element => {
 
               setTweetComponentProps(snippetState);
             })
-            .catch((err) => {
+            .catch((err: Error) => {
               console.log(
                 `There was an error resolving the JSON returned by the API.\n${err}`
               );
