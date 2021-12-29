@@ -1,5 +1,5 @@
 import { TweetURL, TweetHashtag, TweetMention } from "./types/types";
-
+import DOMPurify from "dompurify";
 /**
  * Retrieves the full-size profile picture link corresponding to the Tweet poster.
  * @param {string} small_icon_url The 48x48 pixel profile picture link returned by the twitter API
@@ -14,7 +14,18 @@ export const getFullSizePfpLink = (small_icon_url: string): string => {
   }
 };
 
-
+/**
+ * Generates HTML used to populate the Tweet component's body. With real Tweets,
+ * @ (mentions), # (hashtags), and URLs are highlighted. This function does the same
+ * generating an HTML string. The HTML string is sanitized using DOMPurify before
+ * being returned.
+ * 
+ * @param tweet_body The plaintext of the tweet, without any highlighting 
+ * @param urls  An array of URLs contained within the tweet, returned by the Twitter API
+ * @param hashtags An array of hashtags contained within the tweet, returned by the Twitter API
+ * @param mentions An array of mentions contained within the tweet, returned by the Twitter API
+ * @returns A sanitized HTML string, with correct styling applied for mentions, URLs, and hashtags
+ */
 export const highlightTweetTags = (tweet_body: string, urls?: Array<TweetURL>, hashtags?: Array<TweetHashtag>, mentions?: Array<TweetMention>): string => {
   tweet_body = `<p id="tweet-body-text">${tweet_body}</p>`
   console.log(urls)
@@ -37,7 +48,7 @@ export const highlightTweetTags = (tweet_body: string, urls?: Array<TweetURL>, h
   }
 
 
-  return tweet_body
+  return DOMPurify.sanitize(tweet_body)
 }
 
 /**
