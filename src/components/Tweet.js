@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import dateFormat from "dateformat";
 import { highlightTweetTags } from "../utils/tweet_utils";
 import PropTypes from "prop-types";
-import DOMPurify from "dompurify";
 function Tweet(props) {
   const {
     name,
@@ -49,13 +48,11 @@ function Tweet(props) {
           <div
             style={{ marginBottom: 0 }}
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(
-                highlightTweetTags(
-                  tweet_body,
-                  tweet_urls,
-                  tweet_hashtags,
-                  tweet_mentions
-                )
+              __html: highlightTweetTags(
+                tweet_body,
+                tweet_urls,
+                tweet_hashtags,
+                tweet_mentions
               ),
             }}
           ></div>
