@@ -8,7 +8,7 @@ import DOMPurify from "dompurify";
  */
 export const getFullSizePfpLink = (small_icon_url: string): string => {
   if (small_icon_url.includes("_normal.jpg")) {
-    return small_icon_url.replace("_normal.jpg", ".jpg");
+    return small_icon_url.replace("_normal.jpg", "_bigger.jpg");
   } else {
     throw Error("Provided URL did not contain _normal.jpg image suffix.");
   }
@@ -28,7 +28,7 @@ export const getFullSizePfpLink = (small_icon_url: string): string => {
  */
 export const highlightTweetTags = (tweet_body: string, urls?: Array<TweetURL>, hashtags?: Array<TweetHashtag>, mentions?: Array<TweetMention>): string => {
   tweet_body = `<p id="tweet-body-text">${tweet_body}</p>`
-  console.log(urls)
+  console.log(`Hashtags: ${hashtags}`)
   if(urls) {
     urls.forEach(url => {
       tweet_body = tweet_body.replace(`${url.url}`, `<span class="tweet-tag">${url.url}</span>`)
