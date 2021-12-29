@@ -1,3 +1,5 @@
+import { TweetURL, TweetHashtag, TweetMention } from "./types/types";
+
 /**
  * Retrieves the full-size profile picture link corresponding to the Tweet poster.
  * @param {string} small_icon_url The 48x48 pixel profile picture link returned by the twitter API
@@ -11,6 +13,32 @@ export const getFullSizePfpLink = (small_icon_url: string): string => {
     throw Error("Provided URL did not contain _normal.jpg image suffix.");
   }
 };
+
+
+export const highlightTweetTags = (tweet_body: string, urls?: Array<TweetURL>, hashtags?: Array<TweetHashtag>, mentions?: Array<TweetMention>): string => {
+  tweet_body = `<p id="tweet-body-text">${tweet_body}</p>`
+  console.log(urls)
+  if(urls) {
+    urls.forEach(url => {
+      tweet_body = tweet_body.replace(`${url.url}`, `<span class="tweet-tag">${url.url}</span>`)
+    })
+  }
+
+  if(hashtags){
+    hashtags.forEach(hashtag => {
+      tweet_body = tweet_body.replace(`#${hashtag.tag}`, `<span class="tweet-tag">#${hashtag.tag}</span>`)
+    });
+  }
+
+  if(mentions) {
+    mentions.forEach(mention => {
+      tweet_body = tweet_body.replace(`@${mention.username}`, `<span class="tweet-tag">@${mention.username}</span>`)
+    });
+  }
+
+
+  return tweet_body
+}
 
 /**
  * "Prettifies" a number to make it follow Twitter's standard.
