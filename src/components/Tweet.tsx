@@ -4,8 +4,25 @@ import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import dateFormat from "dateformat";
 import { highlightTweetTags } from "../utils/tweet_utils";
-import PropTypes from "prop-types";
-function Tweet(props) {
+import {TweetURL, TweetHashtag, TweetMention} from "../utils/types/types"
+
+type TweetProps = {
+  name: string,
+  handle: string, 
+  verified?: boolean,
+  pfp_link: string,
+  tweet_urls?: Array<TweetURL>,
+  tweet_hashtags?: Array<TweetHashtag>
+  tweet_mentions?: Array<TweetMention>
+  tweet_body: string,
+  timestamp: Date,
+  replies: string,
+  retweets: string,
+  likes: string,
+}
+
+const Tweet = (props: TweetProps): JSX.Element => {
+  
   const {
     name,
     handle,
@@ -20,7 +37,7 @@ function Tweet(props) {
     retweets,
     likes,
   } = props;
-
+  
   return (
     <div>
       <div className="tweet-box">
@@ -84,19 +101,6 @@ function Tweet(props) {
     </div>
   );
 }
-
-Tweet.propTypes = {
-  name: PropTypes.string.isRequired,
-  handle: PropTypes.string.isRequired,
-  verified: PropTypes.bool,
-  tweet_urls: PropTypes.array,
-  tweet_hashtags: PropTypes.array,
-  tweet_mentions: PropTypes.array,
-  tweet_body: PropTypes.string.isRequired,
-  replies: PropTypes.string.isRequired,
-  retweets: PropTypes.string.isRequired,
-  likes: PropTypes.string.isRequired,
-};
 
 Tweet.defaultProps = {
   verified: false,

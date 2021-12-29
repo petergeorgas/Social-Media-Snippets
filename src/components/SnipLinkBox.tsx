@@ -1,27 +1,39 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import "./SnipLinkBox.css";
 import { getFullSizePfpLink, prettifyTweetMetric } from "../utils/tweet_utils";
+import { ISnippet, TweetData, TweetIncludes } from "../utils/types/types";
 
-const tweet_status_regex = new RegExp(
+const tweet_status_regex: RegExp = new RegExp(
   /^https?:\/\/twitter\.com\/(\w+)\/status\/(\d+)$/
 );
 
-const twitter_api_endpoint =
+const twitter_api_endpoint: string =
   "https://social-media-snippets-functions.vercel.app/api/twitter";
 
-function SnipLinkBox({ setTweetComponentProps }) {
-  const [link, setLink] = useState(undefined); // Used to persist the Tweet link.
-  const [invalidLink, setInvalidLink] = useState(false);
 
-  const onSnip = (event) => {
+type SnapLinkBoxProps = {
+  setTweetComponentProps: Function,
+}
+
+
+const SnipLinkBox = (props: SnapLinkBoxProps): JSX.Element => {
+  const [link, setLink] = useState<string>(""); // Used to persist the Tweet link.
+
+  const [invalidLink, setInvalidLink] = useState<boolean>(false);
+
+  const {setTweetComponentProps} = props
+
+  const onSnip = (event: FormEvent): void => {
     // Here, we are going to need to verify that the link is to a tweet.
     event.preventDefault();
 
-    const split_link = tweet_status_regex.exec(link);
+    
+    const split_link: RegExpExecArray | null = tweet_status_regex.exec(link);
     // Match RegEx to make sure a Tweet link was input -- so we can properly generate a snippet.
     if (split_link && split_link.length > 0) {
       console.log("Twitter status link has been entered!");
       if (invalidLink) setInvalidLink(false); // If invalid link was set to true, reset it.
+      
       const [link, account_name, status_id] = split_link;
       console.log(`Link: ${link}\nAccount: ${account_name}\nID:${status_id}`);
       const req = {
@@ -35,21 +47,21 @@ function SnipLinkBox({ setTweetComponentProps }) {
       };
 
       fetch(twitter_api_endpoint, req)
-        .then((resp) => {
+        .then((resp: Response) => {
           // Resolve the JSON promise
           resp
             .json()
             .then((data) => {
               console.log(data);
-              let tweetData = data.data[0];
-              let includedUserData = data.includes.users[0];
+              let tweetData: TweetData = data.data[0];
+              let includedUserData: TweetIncludes = data.includes.users[0];
               console.log(
                 `TweetData: ${JSON.stringify(
                   tweetData
                 )}\nIncludes: ${JSON.stringify(includedUserData)}.`
               );
 
-              let snippetState = {
+              let snippetState: ISnippet = {
                 name: includedUserData.name,
                 handle: `@${includedUserData.username}`,
                 verified: includedUserData.verified,
@@ -78,7 +90,7 @@ function SnipLinkBox({ setTweetComponentProps }) {
 
               setTweetComponentProps(snippetState);
             })
-            .catch((err) => {
+            .catch((err: Error) => {
               console.log(
                 `There was an error resolving the JSON returned by the API.\n${err}`
               );
