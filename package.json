@@ -48,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@types/dateformat": "^5.0.0",
     "@types/dompurify": "^2.3.2"
   }
 }

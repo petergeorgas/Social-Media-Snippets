@@ -18,3 +18,18 @@ export interface TweetMention {
     username: string,
     id: string,
 };
+
+export interface ISnippet {
+    name: string,
+    handle: string,
+    verified?: boolean,
+    pfp_link: string,
+    tweet_urls?: Array<TweetURL>,
+    tweet_hashtags?: Array<TweetHashtag>
+    tweet_mentions?: Array<TweetMention>
+    tweet_body: string,
+    timestamp: Date,
+    replies: string,
+    retweets: string,
+    likes: string,
+  }

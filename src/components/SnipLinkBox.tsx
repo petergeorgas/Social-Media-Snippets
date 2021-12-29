@@ -1,22 +1,32 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import "./SnipLinkBox.css";
 import { getFullSizePfpLink, prettifyTweetMetric } from "../utils/tweet_utils";
+import { ISnippet } from "../utils/types/types";
 
-const tweet_status_regex = new RegExp(
+const tweet_status_regex: RegExp = new RegExp(
   /^https?:\/\/twitter\.com\/(\w+)\/status\/(\d+)$/
 );
 
-const twitter_api_endpoint =
+const twitter_api_endpoint: string =
   "https://social-media-snippets-functions.vercel.app/api/twitter";
 
-function SnipLinkBox({ setTweetComponentProps }) {
-  const [link, setLink] = useState(undefined); // Used to persist the Tweet link.
-  const [invalidLink, setInvalidLink] = useState(false);
 
-  const onSnip = (event) => {
+type SnapLinkBoxProps = {
+  setTweetComponentProps: Function,
+}
+
+
+const SnipLinkBox = (props: SnapLinkBoxProps): JSX.Element => {
+  const [link, setLink] = useState<string>(""); // Used to persist the Tweet link.
+
+  const [invalidLink, setInvalidLink] = useState<boolean>(false);
+  const {setTweetComponentProps} = props
+
+  const onSnip = (event: FormEvent): void => {
     // Here, we are going to need to verify that the link is to a tweet.
     event.preventDefault();
 
+    
     const split_link = tweet_status_regex.exec(link);
     // Match RegEx to make sure a Tweet link was input -- so we can properly generate a snippet.
     if (split_link && split_link.length > 0) {
@@ -49,7 +59,7 @@ function SnipLinkBox({ setTweetComponentProps }) {
                 )}\nIncludes: ${JSON.stringify(includedUserData)}.`
               );
 
-              let snippetState = {
+              let snippetState: ISnippet = {
                 name: includedUserData.name,
                 handle: `@${includedUserData.username}`,
                 verified: includedUserData.verified,
