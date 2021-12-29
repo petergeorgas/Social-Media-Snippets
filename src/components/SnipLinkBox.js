@@ -57,6 +57,9 @@ function SnipLinkBox({ setTweetComponentProps }) {
                   includedUserData.profile_image_url
                 ),
                 tweet_body: tweetData.text,
+                tweet_urls: tweetData.entities.urls,
+                tweet_hashtags: tweetData.entities.hashtags,
+                tweet_mentions: tweetData.entities.mentions,
                 timestamp: new Date(tweetData.created_at),
                 replies: prettifyTweetMetric(
                   tweetData.public_metrics.reply_count

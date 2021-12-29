@@ -13,6 +13,10 @@
   margin-left: auto;
 }
 
+.tweet-tag {
+  color: #1da1f2;
+}
+
 #verify-badge {
   margin-left: 5px;
   width: 25px;
@@ -65,4 +69,8 @@
 .timestamp {
   color: #777674;
   font-size: x-large;
+}
+
+#tweet-body-text {
+  margin-bottom: 0;
 }
