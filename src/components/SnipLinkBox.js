@@ -49,7 +49,7 @@ function SnipLinkBox({ setTweetComponentProps }) {
                 )}\nIncludes: ${JSON.stringify(includedUserData)}.`
               );
 
-              setTweetComponentProps({
+              let snippetState = {
                 name: includedUserData.name,
                 handle: `@${includedUserData.username}`,
                 verified: includedUserData.verified,
@@ -57,9 +57,6 @@ function SnipLinkBox({ setTweetComponentProps }) {
                   includedUserData.profile_image_url
                 ),
                 tweet_body: tweetData.text,
-                tweet_urls: tweetData.entities.urls,
-                tweet_hashtags: tweetData.entities.hashtags,
-                tweet_mentions: tweetData.entities.mentions,
                 timestamp: new Date(tweetData.created_at),
                 replies: prettifyTweetMetric(
                   tweetData.public_metrics.reply_count
@@ -68,7 +65,18 @@ function SnipLinkBox({ setTweetComponentProps }) {
                   tweetData.public_metrics.retweet_count
                 ),
                 likes: prettifyTweetMetric(tweetData.public_metrics.like_count),
-              });
+              };
+
+              if (tweetData.entities) {
+                if (tweetData.entities.urls)
+                  snippetState.tweet_urls = tweetData.entities.urls;
+                if (tweetData.entities.hashtags)
+                  snippetState.tweet_hashtags = tweetData.entities.hashtags;
+                if (tweetData.entities.mentions)
+                  snippetState.tweet_mentions = tweetData.entities.mentions;
+              }
+
+              setTweetComponentProps(snippetState);
             })
             .catch((err) => {
               console.log(
