@@ -1,10 +1,10 @@
 import { TweetURL, TweetHashtag, TweetMention } from "./types/types";
 import DOMPurify from "dompurify";
 /**
- * Retrieves the full-size profile picture link corresponding to the Tweet poster.
+ * Retrieves the bigger profile picture link corresponding to the Tweet poster.
  * @param {string} small_icon_url The 48x48 pixel profile picture link returned by the twitter API
  * @throws Error if provided URL does not contain "_normal.jpg".
- * @returns The link to the full-size (300x300 pixel) profile picture link.
+ * @returns The link to the bigger (73x73 pixel) profile picture link.
  */
 export const getFullSizePfpLink = (small_icon_url: string): string => {
   if (small_icon_url.includes("_normal.jpg")) {
