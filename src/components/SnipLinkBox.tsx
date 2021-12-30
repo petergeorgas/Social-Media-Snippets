@@ -17,7 +17,7 @@ type SnapLinkBoxProps = {
 
 
 const SnipLinkBox = (props: SnapLinkBoxProps): JSX.Element => {
-  const [link, setLink] = useState<string>(""); // Used to persist the Tweet link.
+  const [link, setLink] = useState<string | undefined>(undefined); // Used to persist the Tweet link.
 
   const [invalidLink, setInvalidLink] = useState<boolean>(false);
 
@@ -28,81 +28,83 @@ const SnipLinkBox = (props: SnapLinkBoxProps): JSX.Element => {
     event.preventDefault();
 
     
-    const split_link: RegExpExecArray | null = tweet_status_regex.exec(link);
-    // Match RegEx to make sure a Tweet link was input -- so we can properly generate a snippet.
-    if (split_link && split_link.length > 0) {
-      console.log("Twitter status link has been entered!");
-      if (invalidLink) setInvalidLink(false); // If invalid link was set to true, reset it.
+    if(link) {
+      const split_link: RegExpExecArray | null = tweet_status_regex.exec(link);
+      // Match RegEx to make sure a Tweet link was input -- so we can properly generate a snippet.
+      if (split_link && split_link.length > 0) {
+        console.log("Twitter status link has been entered!");
+        if (invalidLink) setInvalidLink(false); // If invalid link was set to true, reset it.
+        
+        const [link, account_name, status_id] = split_link;
+        console.log(`Link: ${link}\nAccount: ${account_name}\nID:${status_id}`);
+        const req = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            status_id: status_id,
+          }),
+        };
       
-      const [link, account_name, status_id] = split_link;
-      console.log(`Link: ${link}\nAccount: ${account_name}\nID:${status_id}`);
-      const req = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          status_id: status_id,
-        }),
-      };
-
-      fetch(twitter_api_endpoint, req)
-        .then((resp: Response) => {
-          // Resolve the JSON promise
-          resp
-            .json()
-            .then((data) => {
-              console.log(data);
-              let tweetData: TweetData = data.data[0];
-              let includedUserData: TweetIncludes = data.includes.users[0];
-              console.log(
-                `TweetData: ${JSON.stringify(
-                  tweetData
-                )}\nIncludes: ${JSON.stringify(includedUserData)}.`
-              );
-
-              let snippetState: ISnippet = {
-                name: includedUserData.name,
-                handle: `@${includedUserData.username}`,
-                verified: includedUserData.verified,
-                pfp_link: getFullSizePfpLink(
-                  includedUserData.profile_image_url
-                ),
-                tweet_body: tweetData.text,
-                timestamp: new Date(tweetData.created_at),
-                replies: prettifyTweetMetric(
-                  tweetData.public_metrics.reply_count
-                ),
-                retweets: prettifyTweetMetric(
-                  tweetData.public_metrics.retweet_count
-                ),
-                likes: prettifyTweetMetric(tweetData.public_metrics.like_count),
-              };
-
-              if (tweetData.entities) {
-                if (tweetData.entities.urls)
-                  snippetState.tweet_urls = tweetData.entities.urls;
-                if (tweetData.entities.hashtags)
-                  snippetState.tweet_hashtags = tweetData.entities.hashtags;
-                if (tweetData.entities.mentions)
-                  snippetState.tweet_mentions = tweetData.entities.mentions;
-              }
-
-              setTweetComponentProps(snippetState);
-            })
-            .catch((err: Error) => {
-              console.log(
-                `There was an error resolving the JSON returned by the API.\n${err}`
-              );
-            });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      console.log("Not a Tweet status link.");
-      // Display invalid link
-      setInvalidLink(true);
+        fetch(twitter_api_endpoint, req)
+          .then((resp: Response) => {
+            // Resolve the JSON promise
+            resp
+              .json()
+              .then((data) => {
+                console.log(data);
+                let tweetData: TweetData = data.data[0];
+                let includedUserData: TweetIncludes = data.includes.users[0];
+                console.log(
+                  `TweetData: ${JSON.stringify(
+                    tweetData
+                  )}\nIncludes: ${JSON.stringify(includedUserData)}.`
+                );
+                  
+                let snippetState: ISnippet = {
+                  name: includedUserData.name,
+                  handle: `@${includedUserData.username}`,
+                  verified: includedUserData.verified,
+                  pfp_link: getFullSizePfpLink(
+                    includedUserData.profile_image_url
+                  ),
+                  tweet_body: tweetData.text,
+                  timestamp: new Date(tweetData.created_at),
+                  replies: prettifyTweetMetric(
+                    tweetData.public_metrics.reply_count
+                  ),
+                  retweets: prettifyTweetMetric(
+                    tweetData.public_metrics.retweet_count
+                  ),
+                  likes: prettifyTweetMetric(tweetData.public_metrics.like_count),
+                };
+              
+                if (tweetData.entities) {
+                  if (tweetData.entities.urls)
+                    snippetState.tweet_urls = tweetData.entities.urls;
+                  if (tweetData.entities.hashtags)
+                    snippetState.tweet_hashtags = tweetData.entities.hashtags;
+                  if (tweetData.entities.mentions)
+                    snippetState.tweet_mentions = tweetData.entities.mentions;
+                }
+              
+                setTweetComponentProps(snippetState);
+              })
+              .catch((err: Error) => {
+                console.log(
+                  `There was an error resolving the JSON returned by the API.\n${err}`
+                );
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        console.log("Not a Tweet status link.");
+        // Display invalid link
+        setInvalidLink(true);
+      }
     }
   };
 

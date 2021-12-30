@@ -4,18 +4,18 @@ import SnipLinkBox from "./components/SnipLinkBox";
 import Tweet from "./components/Tweet";
 function App() {
   const [snippet, setSnippet] = useState({
-    name: null,
-    handle: null,
+    name: undefined,
+    handle: undefined,
     verified: false,
-    pfp_link: null,
-    tweet_body: null,
-    tweet_urls: null,
-    tweet_hashtags: null,
-    tweet_mentions: null,
-    timestamp: null,
-    replies: null,
-    retweets: null,
-    likes: null,
+    pfp_link: undefined,
+    tweet_body: undefined,
+    tweet_urls: undefined,
+    tweet_hashtags: undefined,
+    tweet_mentions: undefined,
+    timestamp: undefined,
+    replies: undefined,
+    retweets: undefined,
+    likes: undefined,
   });
 
   const setTweetComponentProps = (obj) => {
