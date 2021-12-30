@@ -39,10 +39,19 @@ export interface TweetData {
     author_id: string,
     created_at: string,
     text: string,
-    entities?: Entity,
+    entities?: {    
+        urls?: Array<TweetURL>,
+        hashtags?: Array<TweetHashtag>,
+        mentions?: Array<TweetMention>,
+    }
     possibly_sensitive: false,
     id: string, 
-    public_metrics: PublicMetrics
+    public_metrics: {
+        retweet_count: number,
+        reply_count: number,
+        like_count: number,
+        quote_count: number,
+    }
 }
 
 export interface TweetIncludes {
@@ -53,16 +62,3 @@ export interface TweetIncludes {
     profile_image_url: string,
 }
 
-
-type PublicMetrics = { 
-    retweet_count: number,
-    reply_count: number,
-    like_count: number,
-    quote_count: number,
-}
-
-type Entity = {
-    urls?: Array<TweetURL>,
-    hashtags?: Array<TweetHashtag>,
-    mentions?: Array<TweetMention>,
-}
