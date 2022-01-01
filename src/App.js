@@ -28,7 +28,7 @@ function App() {
       <SnipLinkBox setTweetComponentProps={setTweetComponentProps} />
       {snippet.name ? (
         <SnippetPreview
-          background_color="cyan"
+          background_color="cadetblue"
           tweet_name={snippet.name}
           tweet_handle={snippet.handle}
           tweet_verified={snippet.verified}
