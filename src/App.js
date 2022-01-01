@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import SnipLinkBox from "./components/SnipLinkBox";
-import Tweet from "./components/Tweet";
+import SnippetPreview from "./components/SnippetPreview";
+//import Tweet from "./components/Tweet";
 function App() {
   const [snippet, setSnippet] = useState({
     name: undefined,
@@ -26,19 +27,20 @@ function App() {
     <div className="App">
       <SnipLinkBox setTweetComponentProps={setTweetComponentProps} />
       {snippet.name ? (
-        <Tweet
-          name={snippet.name}
-          handle={snippet.handle}
-          verified={snippet.verified}
-          pfp_link={snippet.pfp_link}
+        <SnippetPreview
+          background_color="cyan"
+          tweet_name={snippet.name}
+          tweet_handle={snippet.handle}
+          tweet_verified={snippet.verified}
+          tweet_pfp_link={snippet.pfp_link}
           tweet_body={snippet.tweet_body}
           tweet_urls={snippet.tweet_urls}
           tweet_hashtags={snippet.tweet_hashtags}
           tweet_mentions={snippet.tweet_mentions}
-          timestamp={snippet.timestamp}
-          replies={snippet.replies}
-          retweets={snippet.retweets}
-          likes={snippet.likes}
+          tweet_timestamp={snippet.timestamp}
+          tweet_replies={snippet.replies}
+          tweet_retweets={snippet.retweets}
+          tweet_likes={snippet.likes}
         />
       ) : null}
     </div>
