@@ -8,6 +8,7 @@
     justify-content: center;
     padding: 55px;
     border: 3px solid #ccc;
+    color: #787878;
   }
 .preview-container-outer{
     border-radius: 25px;
@@ -19,4 +20,15 @@
     padding: 40px;
     justify-content: center;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15), 0 6px 6px rgba(0, 0, 0, 0.2);
+}
+
+#options-bar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    border-radius: 25px;
+    border: 3px solid #ccc;
 }

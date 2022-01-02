@@ -1,10 +1,12 @@
 import React from 'react'
+import { useState } from 'react'
 import "./SnippetPreview.css"
 import {TweetURL, TweetHashtag, TweetMention} from "../utils/types/types"
+import {CirclePicker} from 'react-color'
+
 import Tweet from './Tweet'
 
 type PreviewProps = {
-    background_color: string,
     tweet_name: string,
     tweet_handle: string, 
     tweet_verified?: boolean,
@@ -21,7 +23,6 @@ type PreviewProps = {
  
 const SnippetPreview = (props: PreviewProps) => {
     const {
-        background_color,
         tweet_name,
         tweet_handle,
         tweet_verified,
@@ -36,12 +37,17 @@ const SnippetPreview = (props: PreviewProps) => {
         tweet_likes,
       } = props;
 
+    const [background_color, setBackgroundColor] = useState<string>("#787878");
+
     return (
         <div>
             <div className="preview-container-outer">
+                <div id="options-bar" style={{padding:"20px", marginLeft: "30px", marginRight: "30px"}}>
+                    <CirclePicker circleSpacing={4} circleSize={22} color={background_color} onChangeComplete={(color) => setBackgroundColor(color.hex)}/>
+                </div>
                 <div className="preview-container" style={{backgroundColor: background_color}}>
                     <Tweet
-                    variant="dark"
+                    variant="light"
                     name={tweet_name}
                     handle={tweet_handle}
                     verified={tweet_verified}
