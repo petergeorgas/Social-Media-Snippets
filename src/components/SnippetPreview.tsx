@@ -38,21 +38,23 @@ const SnippetPreview = (props: PreviewProps) => {
 
     return (
         <div>
-            <div className="preview-container" style={{backgroundColor: background_color}}>
-            <Tweet
-                name={tweet_name}
-                handle={tweet_handle}
-                verified={tweet_verified}
-                pfp_link={tweet_pfp_link}
-                tweet_body={tweet_body}
-                tweet_urls={tweet_urls}
-                tweet_hashtags={tweet_hashtags}
-                tweet_mentions={tweet_mentions}
-                timestamp={tweet_timestamp}
-                replies={tweet_replies}
-                retweets={tweet_retweets}
-                likes={tweet_likes}
-                />
+            <div className="preview-container-outer">
+                <div className="preview-container" style={{backgroundColor: background_color}}>
+                    <Tweet
+                    name={tweet_name}
+                    handle={tweet_handle}
+                    verified={tweet_verified}
+                    pfp_link={tweet_pfp_link}
+                    tweet_body={tweet_body}
+                    tweet_urls={tweet_urls}
+                    tweet_hashtags={tweet_hashtags}
+                    tweet_mentions={tweet_mentions}
+                    timestamp={tweet_timestamp}
+                    replies={tweet_replies}
+                    retweets={tweet_retweets}
+                    likes={tweet_likes}
+                    />
+                </div>
             </div>
         </div>
     )
