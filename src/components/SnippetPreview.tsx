@@ -3,7 +3,8 @@ import { useState } from 'react'
 import "./SnippetPreview.css"
 import {TweetURL, TweetHashtag, TweetMention} from "../utils/types/types"
 import {CirclePicker} from 'react-color'
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPalette } from '@fortawesome/free-solid-svg-icons'
 import Tweet from './Tweet'
 
 type PreviewProps = {
@@ -37,12 +38,14 @@ const SnippetPreview = (props: PreviewProps) => {
         tweet_likes,
       } = props;
 
-    const [background_color, setBackgroundColor] = useState<string>("#787878");
+    const [background_color, setBackgroundColor] = useState<string>("#03A9F4");
 
     return (
         <div>
             <div className="preview-container-outer">
                 <div id="options-bar" style={{padding:"20px", marginLeft: "30px", marginRight: "30px"}}>
+                    <FontAwesomeIcon id="palette-icon" icon={faPalette} size="3x" style={{color: "#ccc"}}/>
+                    <div className="divider" style={{height: "48px"}}></div>
                     <CirclePicker circleSpacing={4} circleSize={22} color={background_color} onChangeComplete={(color) => setBackgroundColor(color.hex)}/>
                 </div>
                 <div className="preview-container" style={{backgroundColor: background_color}}>
