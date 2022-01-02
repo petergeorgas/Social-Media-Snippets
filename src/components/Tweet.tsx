@@ -7,6 +7,7 @@ import { highlightTweetTags } from "../utils/tweet_utils";
 import {TweetURL, TweetHashtag, TweetMention} from "../utils/types/types"
 
 type TweetProps = {
+  variant: string,
   name: string,
   handle: string, 
   verified?: boolean,
@@ -24,6 +25,7 @@ type TweetProps = {
 const Tweet = (props: TweetProps): JSX.Element => {
   
   const {
+    variant,
     name,
     handle,
     verified,
@@ -40,7 +42,7 @@ const Tweet = (props: TweetProps): JSX.Element => {
   
   return (
     <div>
-      <div className="tweet-box">
+      <div className="tweet-box" style={variant === "dark" ? {backgroundColor: "black", color: "white"} : {}}>
         <div className="line-break"></div>
         <div className="profile-info">
           <img src={pfp_link} className="pfp" alt="Author profile." />
@@ -80,19 +82,19 @@ const Tweet = (props: TweetProps): JSX.Element => {
         <div className="interactions-container">
           {replies !== "0" ? (
             <p className="tweet-interaction-box">
-              <span className="tweet-interaction">{replies}</span>
+              <span className="tweet-interaction" style={variant==="dark" ? {color: "white"}:{}}>{replies}</span>
               {replies === "1" ? " reply" : " replies"}
             </p>
           ) : null}
           {retweets !== "0" ? (
             <p className="tweet-interaction-box">
-              <span className="tweet-interaction">{retweets}</span> retweet
+              <span className="tweet-interaction" style={variant==="dark" ? {color: "white"}:{}}>{retweets}</span> retweet
               {retweets === "1" ? "" : "s"}
             </p>
           ) : null}
           {likes !== "0" ? (
             <p className="tweet-interaction-box">
-              <span className="tweet-interaction">{likes}</span> like
+              <span className="tweet-interaction" style={variant==="dark" ? {color: "white"}:{}}>{likes}</span> like
               {retweets === "1" ? "" : "s"}
             </p>
           ) : null}

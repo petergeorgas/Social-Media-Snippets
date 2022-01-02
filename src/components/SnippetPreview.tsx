@@ -41,6 +41,7 @@ const SnippetPreview = (props: PreviewProps) => {
             <div className="preview-container-outer">
                 <div className="preview-container" style={{backgroundColor: background_color}}>
                     <Tweet
+                    variant="dark"
                     name={tweet_name}
                     handle={tweet_handle}
                     verified={tweet_verified}
