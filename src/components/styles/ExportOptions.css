@@ -1,0 +1,23 @@
+.options-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.option-btn {
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  color: #1b82c2;
+  border: none;
+  font-size: large;
+  margin: 5px;
+}
+
+.selected {
+  color: #1da1f2;
+  font-weight: bold;
+}
+
+.option-btn:hover {
+  cursor: pointer;
+}

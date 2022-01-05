@@ -1,0 +1,15 @@
+.export-btn {
+  background-color: white;
+  border-radius: 10px;
+  width: 120px;
+  border: 3px solid #1da1f2;
+  color: #1da1f2;
+  padding: 10px;
+  font-size: x-large;
+  cursor: pointer;
+}
+
+.export-btn:hover {
+  background-color: #1da1f2;
+  color: white;
+}

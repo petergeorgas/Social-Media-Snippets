@@ -6,6 +6,8 @@ import {CirclePicker} from 'react-color'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPalette } from '@fortawesome/free-solid-svg-icons'
 import Tweet from './Tweet'
+import ExportButton from './ExportButton'
+import ExportOptions from './ExportOptions'
 
 type PreviewProps = {
     tweet_name: string,
@@ -47,6 +49,8 @@ const SnippetPreview = (props: PreviewProps) => {
                     <FontAwesomeIcon id="palette-icon" icon={faPalette} size="3x" style={{color: "#ccc"}}/>
                     <div className="divider" style={{height: "48px"}}></div>
                     <CirclePicker circleSpacing={4} circleSize={22} color={background_color} onChangeComplete={(color) => setBackgroundColor(color.hex)}/>
+                    <ExportOptions/>
+                    <ExportButton export_action={() => {}}/>
                 </div>
                 <div className="preview-container" style={{backgroundColor: background_color}}>
                     <Tweet
