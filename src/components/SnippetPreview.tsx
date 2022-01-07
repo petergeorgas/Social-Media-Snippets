@@ -4,7 +4,7 @@ import "./SnippetPreview.css"
 import {TweetURL, TweetHashtag, TweetMention} from "../utils/types/types"
 import {CirclePicker} from 'react-color'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPalette } from '@fortawesome/free-solid-svg-icons'
+import { faPalette, faDownload } from '@fortawesome/free-solid-svg-icons'
 import Tweet from './Tweet'
 import ExportButton from './ExportButton'
 import ExportOptions from './ExportOptions'
@@ -49,7 +49,11 @@ const SnippetPreview = (props: PreviewProps) => {
                     <FontAwesomeIcon id="palette-icon" icon={faPalette} size="3x" style={{color: "#ccc"}}/>
                     <div className="divider" style={{height: "48px"}}></div>
                     <CirclePicker circleSpacing={4} circleSize={22} color={background_color} onChangeComplete={(color) => setBackgroundColor(color.hex)}/>
-                    <ExportOptions/>
+                    <div style={{marginLeft: "auto", display: "flex", flexDirection:"row", alignItems:"center", justifyContent: "center"}}>
+                        <FontAwesomeIcon id="export-icon" icon={faDownload} size="3x" style={{color: "#ccc"}}/>
+                        <div className="divider" style={{height: "48px"}}></div>
+                        <ExportOptions/>
+                    </div>
                     <ExportButton export_action={() => {}}/>
                 </div>
                 <div className="preview-container" style={{backgroundColor: background_color}}>
