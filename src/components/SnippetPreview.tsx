@@ -55,18 +55,12 @@ const SnippetPreview = (props: PreviewProps) => {
 		setExportOptions(obj);
 	};
 
-	const getColor = () => {
-		return background_color;
-	};
-
 	const onExpClick = () => {
 		if (ref.current === null) {
 			return;
 		}
 
 		if (exportOptions.format === "PNG") {
-			var backgnd = getColor();
-
 			toPng(ref.current, {
 				cacheBust: true,
 				width: 1100,
@@ -78,7 +72,7 @@ const SnippetPreview = (props: PreviewProps) => {
 					alignItems: "center",
 					justifyContent: "center",
 				},
-				backgroundColor: backgnd,
+				backgroundColor: background_color,
 			})
 				.then((dataURL) => {
 					const link = document.createElement("a");
