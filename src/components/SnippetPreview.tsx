@@ -59,7 +59,7 @@ const SnippetPreview = (props: PreviewProps) => {
 		return background_color;
 	};
 
-	const onExportClick = useCallback(() => {
+	const onExpClick = () => {
 		if (ref.current === null) {
 			return;
 		}
@@ -90,7 +90,7 @@ const SnippetPreview = (props: PreviewProps) => {
 					console.log(err);
 				});
 		}
-	}, [ref]);
+	};
 
 	return (
 		<div>
@@ -130,7 +130,7 @@ const SnippetPreview = (props: PreviewProps) => {
 						<div className="divider" style={{ height: "48px" }}></div>
 						<ExportOptions onExportOptionsChange={setExport} />
 					</div>
-					<ExportButton export_action={onExportClick} />
+					<ExportButton export_action={onExpClick} />
 				</div>
 				<div>
 					{/* Nodes within here will be converted to image format. */}
