@@ -18,7 +18,7 @@ const ExportOptions = (props: { onExportOptionsChange: Function }) => {
 					className={`option-btn size ${sizeFactor === 1 ? "selected" : ""}`}
 					onClick={() => {
 						setSizeFactor(1);
-						onExportOptionsChange({ scale: 1, exportFormat: exportFormat });
+						onExportOptionsChange({ scale: 1, format: exportFormat });
 					}}
 				>
 					1x
@@ -28,7 +28,7 @@ const ExportOptions = (props: { onExportOptionsChange: Function }) => {
 					className={`option-btn size ${sizeFactor === 2 ? "selected" : ""}`}
 					onClick={() => {
 						setSizeFactor(2);
-						onExportOptionsChange({ scale: 2, exportFormat: exportFormat });
+						onExportOptionsChange({ scale: 2, format: exportFormat });
 					}}
 				>
 					2x
@@ -38,7 +38,7 @@ const ExportOptions = (props: { onExportOptionsChange: Function }) => {
 					className={`option-btn size ${sizeFactor === 4 ? "selected" : ""}`}
 					onClick={() => {
 						setSizeFactor(4);
-						onExportOptionsChange({ scale: 4, exportFormat: exportFormat });
+						onExportOptionsChange({ scale: 4, format: exportFormat });
 					}}
 				>
 					4x
@@ -59,7 +59,7 @@ const ExportOptions = (props: { onExportOptionsChange: Function }) => {
 					className={`option-btn ${exportFormat === "PNG" ? "selected" : ""}`}
 					onClick={() => {
 						setExportFormat("PNG");
-						onExportOptionsChange({ scale: sizeFactor, exportFormat: "PNG" });
+						onExportOptionsChange({ scale: sizeFactor, format: "PNG" });
 					}}
 				>
 					PNG
@@ -70,7 +70,8 @@ const ExportOptions = (props: { onExportOptionsChange: Function }) => {
 					className={`option-btn ${exportFormat === "SVG" ? "selected" : ""}`}
 					onClick={() => {
 						setExportFormat("SVG");
-						onExportOptionsChange({ scale: sizeFactor, exportFormat: "SVG" });
+						console.log(`Click: ${exportFormat}`);
+						onExportOptionsChange({ scale: sizeFactor, format: "SVG" });
 					}}
 				>
 					SVG

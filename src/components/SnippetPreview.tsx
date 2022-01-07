@@ -1,10 +1,10 @@
 import React from "react";
-import { useState, useCallback, useRef } from "react";
+import { useState, useRef } from "react";
 import { TweetURL, TweetHashtag, TweetMention } from "../utils/types/types";
 import { CirclePicker } from "react-color";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPalette, faDownload } from "@fortawesome/free-solid-svg-icons";
-import { toPng } from "html-to-image";
+import { toPng, toSvg } from "html-to-image";
 import Tweet from "./Tweet";
 import ExportButton from "./ExportButton";
 import ExportOptions from "./ExportOptions";
@@ -52,6 +52,7 @@ const SnippetPreview = (props: PreviewProps) => {
 	const ref = useRef<HTMLDivElement>(null);
 
 	const setExport = (obj: { scale: number; format: string }) => {
+		console.log(`${obj.scale}; ${obj.format}`);
 		setExportOptions(obj);
 	};
 
@@ -60,19 +61,55 @@ const SnippetPreview = (props: PreviewProps) => {
 			return;
 		}
 
+		var style = {
+			display: "flex",
+			flexDirection: "column",
+			alignItems: "center",
+			justifyContent: "center",
+			backgroundImage:
+				"linear-gradient(135deg,#ffddc7,#ffd5c7,#ffcac8,#fecad6,#ffcde8,#ebcefc,#dfcffe,#cad5f3,#d9eafe)",
+		};
+
+		console.log(exportOptions.format);
 		if (exportOptions.format === "PNG") {
 			toPng(ref.current, {
 				cacheBust: true,
 				width: 1100,
 				height: 700,
-				pixelRatio: 1,
+				pixelRatio: exportOptions.scale,
 				style: {
 					display: "flex",
 					flexDirection: "column",
 					alignItems: "center",
 					justifyContent: "center",
+					backgroundImage:
+						"linear-gradient(135deg,#ffddc7,#ffd5c7,#ffcac8,#fecad6,#ffcde8,#ebcefc,#dfcffe,#cad5f3,#d9eafe)",
 				},
-				backgroundColor: background_color,
+			})
+				.then((dataURL) => {
+					const link = document.createElement("a");
+					link.download = "tweet.png";
+					link.href = dataURL;
+					link.click();
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		} else if (exportOptions.format === "SVG") {
+			console.log("SVG!");
+			toSvg(ref.current, {
+				cacheBust: true,
+				width: 1100,
+				height: 700,
+				pixelRatio: exportOptions.scale,
+				style: {
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+					justifyContent: "center",
+					backgroundImage:
+						"linear-gradient(135deg,#ffddc7,#ffd5c7,#ffcac8,#fecad6,#ffcde8,#ebcefc,#dfcffe,#cad5f3,#d9eafe)",
+				},
 			})
 				.then((dataURL) => {
 					const link = document.createElement("a");
