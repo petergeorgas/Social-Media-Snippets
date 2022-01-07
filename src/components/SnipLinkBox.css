@@ -1,55 +1,55 @@
 .snip-box-container {
-	border-radius: 25px;
-	background-color: white;
-	width: 800px;
-	max-height: 350px;
-	display: flex;
-	flex-direction: column;
-	padding: 40px;
-	box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15), 0 6px 6px rgba(0, 0, 0, 0.2);
-	margin-bottom: 20px;
+  border-radius: 25px;
+  background-color: white;
+  width: 800px;
+  max-height: 350px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15), 0 6px 6px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
 }
 .submit-button {
-	background-color: #1da1f2;
-	border-radius: 10px;
-	width: 15%;
-	border: none;
-	color: white;
-	padding: 10px;
-	font-size: x-large;
-	margin-left: 4px;
-	cursor: pointer;
+  background-color: #1da1f2;
+  border-radius: 10px;
+  width: 15%;
+  border: none;
+  color: white;
+  padding: 10px;
+  font-size: x-large;
+  margin-left: 4px;
+  cursor: pointer;
 }
 
 .submit-button:hover {
-	background-color: #1d96e2;
+  background-color: #1d96e2;
 }
 
 .link-box {
-	font-size: x-large;
-	width: 85%;
-	height: 50px;
-	border-radius: 10px;
-	border: 3px solid #ccc;
+  font-size: x-large;
+  width: 85%;
+  height: 50px;
+  border-radius: 10px;
+  border: 3px solid #ccc;
 }
 
 .link-box:focus {
-	outline: 3px solid #1da1f2;
+  outline: 3px solid #1da1f2;
 }
 
 .link-box-invalid {
-	outline: 3px solid #f82a27;
+  outline: 3px solid #f82a27;
 }
 
 #snip-bar {
-	display: flex;
-	flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 #invalid-link-label {
-	margin-top: 5px;
-	margin-bottom: 0;
-	font-size: large;
-	color: #f82a27;
-	font-weight: 400;
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-size: large;
+  color: #f82a27;
+  font-weight: 400;
 }

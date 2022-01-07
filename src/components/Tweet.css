@@ -1,76 +1,76 @@
 .tweet-box {
-	border-radius: 25px;
-	background-color: white;
-	width: 650px;
-	max-height: 500px;
-	display: flex;
-	flex-direction: column;
-	padding: 40px;
-	box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15), 0 6px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 25px;
+  background-color: white;
+  width: 650px;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15), 0 6px 6px rgba(0, 0, 0, 0.2);
 }
 #twitter-logo {
-	color: #1da1f2;
-	margin-left: auto;
+  color: #1da1f2;
+  margin-left: auto;
 }
 
 .tweet-tag {
-	color: #1da1f2;
+  color: #1da1f2;
 }
 
 #verify-badge {
-	margin-left: 5px;
-	width: 25px;
-	height: 25px;
+  margin-left: 5px;
+  width: 25px;
+  height: 25px;
 }
 
 .interactions-container {
-	display: flex;
-	flex-direction: row;
-	font-size: large;
-	color: #777674;
+  display: flex;
+  flex-direction: row;
+  font-size: large;
+  color: #777674;
 }
 .profile-name-verify {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .tweet-interaction {
-	font-weight: bold;
-	color: black;
+  font-weight: bold;
+  color: black;
 }
 .tweet-interaction-box {
-	margin-top: 0px;
-	margin-right: 15px;
+  margin-top: 0px;
+  margin-right: 15px;
 }
 .pfp {
-	border-radius: 50%;
-	width: 73px;
-	height: 73px;
-	margin-right: 15px;
+  border-radius: 50%;
+  width: 73px;
+  height: 73px;
+  margin-right: 15px;
 }
 
 .profile-info {
-	display: flex;
-	flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .profile-name-container {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: center;
-	font-size: large;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: large;
 }
 
 .tweet-body {
-	font-size: x-large;
+  font-size: x-large;
 }
 
 .timestamp {
-	color: #777674;
-	font-size: large;
+  color: #777674;
+  font-size: large;
 }
 
 #tweet-body-text {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }

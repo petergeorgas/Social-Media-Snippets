@@ -51,7 +51,6 @@
   "devDependencies": {
     "@types/dateformat": "^5.0.0",
     "@types/dompurify": "^2.3.2",
-    "@types/react-color": "^3.0.6",
-    "eslint": "^8.6.0"
+    "@types/react-color": "^3.0.6"
   }
 }

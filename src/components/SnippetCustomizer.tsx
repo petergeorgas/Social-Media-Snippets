@@ -1,7 +1,11 @@
-import React from "react";
+import React from 'react'
 
 const SnippetCustomizer = ({}) => {
-	return <div></div>;
-};
+    return (
+        <div>
+            
+        </div>
+    )
+}
 
-export default SnippetCustomizer;
+export default SnippetCustomizer
